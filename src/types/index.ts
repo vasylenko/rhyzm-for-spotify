@@ -15,6 +15,7 @@ export interface SpotifyDevice {
 export interface Scene {
   id: string
   name: string
+  volume: number // 0-100, percentage
   playlist: {
     id: string
     name: string
@@ -27,6 +28,8 @@ export interface Scene {
     type: string
   }
 }
+
+export const DEFAULT_VOLUME = 15
 
 export interface SpotifyTokens {
   accessToken: string

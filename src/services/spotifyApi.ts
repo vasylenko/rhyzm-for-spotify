@@ -111,3 +111,34 @@ export async function startPlayback(
     return { success: false, error: err instanceof Error ? err.message : 'Playback failed' }
   }
 }
+
+export async function setVolume(
+  volumePercent: number,
+  deviceId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const volume = Math.max(0, Math.min(100, Math.round(volumePercent)))
+    const response = await fetchWithAuth(
+      `/me/player/volume?volume_percent=${volume}&device_id=${deviceId}`,
+      { method: 'PUT' }
+    )
+
+    // 204 No Content = success
+    if (response.status === 204) {
+      return { success: true }
+    }
+
+    // Some devices don't support volume control
+    if (response.status === 403) {
+      return { success: false, error: 'Device does not support volume control' }
+    }
+
+    if (response.status === 404) {
+      return { success: false, error: 'Device not found' }
+    }
+
+    return { success: false, error: 'Failed to set volume' }
+  } catch (err) {
+    return { success: false, error: err instanceof Error ? err.message : 'Failed to set volume' }
+  }
+}

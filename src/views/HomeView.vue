@@ -3,8 +3,9 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSpotifyAuth } from '@/composables/useSpotifyAuth'
 import { useScenes } from '@/composables/useScenes'
-import { startPlayback, getAvailableDevices } from '@/services/spotifyApi'
+import { startPlayback, getAvailableDevices, setVolume } from '@/services/spotifyApi'
 import { validateConfig } from '@/config'
+import { DEFAULT_VOLUME } from '@/types'
 import type { Scene, SpotifyDevice } from '@/types'
 
 const router = useRouter()
@@ -25,6 +26,10 @@ async function playScene(scene: Scene) {
   const result = await startPlayback(scene.playlist.uri, scene.device.id)
 
   if (result.success) {
+    // Set volume after playback starts (use scene volume or default)
+    const volume = scene.volume ?? DEFAULT_VOLUME
+    await setVolume(volume, scene.device.id)
+
     setTimeout(() => {
       playingSceneId.value = null
     }, 2000)
@@ -53,9 +58,14 @@ async function playOnDevice(device: SpotifyDevice) {
   if (!pendingScene.value) return
 
   showDevicePicker.value = false
-  const result = await startPlayback(pendingScene.value.playlist.uri, device.id)
+  const scene = pendingScene.value
+  const result = await startPlayback(scene.playlist.uri, device.id)
 
   if (result.success) {
+    // Set volume after playback starts
+    const volume = scene.volume ?? DEFAULT_VOLUME
+    await setVolume(volume, device.id)
+
     setTimeout(() => {
       playingSceneId.value = null
       pendingScene.value = null

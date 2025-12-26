@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserPlaylists, getAvailableDevices } from '@/services/spotifyApi'
 import { useScenes } from '@/composables/useScenes'
+import { DEFAULT_VOLUME } from '@/types'
 import type { SpotifyPlaylist, SpotifyDevice } from '@/types'
 
 const router = useRouter()
@@ -23,6 +24,7 @@ const playlistSearch = ref('')
 const selectedPlaylist = ref<SpotifyPlaylist | null>(null)
 const selectedDevice = ref<SpotifyDevice | null>(null)
 const sceneName = ref('')
+const sceneVolume = ref(DEFAULT_VOLUME)
 
 const filteredPlaylists = computed(() => {
   if (!playlistSearch.value) return playlists.value
@@ -95,6 +97,7 @@ function saveScene() {
 
   addScene({
     name: sceneName.value.trim(),
+    volume: sceneVolume.value,
     playlist: {
       id: selectedPlaylist.value.id,
       name: selectedPlaylist.value.name,
@@ -271,6 +274,26 @@ function saveScene() {
         class="w-full p-4 bg-gray-800 rounded-lg mb-6 outline-none focus:ring-2 focus:ring-spotify-green text-lg"
         @keyup.enter="canSave && saveScene()"
       />
+
+      <!-- Volume slider -->
+      <div class="mb-6">
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-sm text-spotify-gray">Start volume</label>
+          <span class="text-sm font-medium">{{ sceneVolume }}%</span>
+        </div>
+        <input
+          v-model.number="sceneVolume"
+          type="range"
+          min="0"
+          max="100"
+          step="5"
+          class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-spotify-green"
+        />
+        <div class="flex justify-between text-xs text-spotify-gray mt-1">
+          <span>0%</span>
+          <span>100%</span>
+        </div>
+      </div>
 
       <!-- Save button -->
       <button
