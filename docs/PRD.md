@@ -198,6 +198,7 @@ Why `localStorage` over `IndexedDB`:
 ### Technical Improvements
 - Migrate to official Spotify TypeScript SDK (`@spotify/web-api-ts-sdk`) - better types, built-in token refresh, maintained by Spotify
 - Validate for KISS / YAGNI
+- Sensitive info checkup
 - Validate codestyle:
     - TS-specific best practices
     - comments answer 'why' not 'what'
