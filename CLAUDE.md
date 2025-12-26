@@ -1,6 +1,6 @@
 # Spotify Scenes
 
-One-tap launcher for Spotify playlists on preferred devices. A "scene" is a saved "music + device" combination, for example "Country playlist with Alexa speakers".
+Minimalistic web application, a one-tap launcher for Spotify playlists on preferred devices. A "scene" is a saved "music + device" combination, for example "Country playlist with Alexa speakers".
 
 ## Tech Stack
 
@@ -29,3 +29,7 @@ Read PRD.md before implementing features or making architectural decisions.
 - KISS - Prefer simple solutions over clever ones
 - Minimal changes - Smallest diff that achieves the goal
 - Match existing style - Consistency over personal preference
+
+## Dev tooling
+
+- Chrome DevTools MCP (all tools allowed in .claude/settings.json) - extremely useful for UI development, debugging, performance testing, e2e tests, and everything else that requires an interaction with the web application. (https://github.com/ChromeDevTools/chrome-devtools-mcp)
