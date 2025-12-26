@@ -1,0 +1,25 @@
+{
+  "name": "spotify-scenes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "packageManager": "pnpm@10.26.2",
+  "dependencies": {
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@unocss/preset-uno": "^66.5.11",
+    "@unocss/reset": "^66.5.11",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "typescript": "^5.9.3",
+    "unocss": "^66.5.11",
+    "vite": "^7.3.0",
+    "vue-tsc": "^3.2.1"
+  }
+}
