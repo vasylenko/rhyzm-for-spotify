@@ -180,3 +180,18 @@ Why no backend:
 - Mobile-specific optimizations
 - Logout flow
 - Offline handling
+
+---
+
+## Minimum Viable Product (MVP)
+
+### Technical Improvements
+- Migrate to official Spotify TypeScript SDK (`@spotify/web-api-ts-sdk`) - better types, built-in token refresh, maintained by Spotify
+
+### Features
+- Edit/delete scenes (long-press on tile)
+- Play/pause controls on active scene tile
+- Multiple content types (albums, podcasts, liked songs)
+- "Save recent" scene creation from recently played
+- Logout flow
+- User-friendly error messages with troubleshooting guides
