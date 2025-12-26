@@ -7,6 +7,7 @@ export default defineConfig({
     vue(),
     UnoCSS(),
   ],
+  base: './', // Relative paths for static hosting
   resolve: {
     alias: {
       '@': '/src',

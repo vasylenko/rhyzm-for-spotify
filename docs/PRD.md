@@ -3,6 +3,8 @@
 ## Concept
 A minimalistic web app to instantly launch favorite Spotify playlists on preferred devices with one tap.
 
+Example user story: "I have a playlist I like to listen to while working and I want to play it on my B&O Beoplay M5 speaker if I work from home. This app allows me to save playlist+device+volume combo and start the playlist in one action instead of doing so from Spoify interface: find the playlist on the list, click device picker, click device, set the volume."
+
 ## Core Definitions
 - **Scene**: A saved combination of music (playlist) + device
 
@@ -113,9 +115,17 @@ Why no backend:
 - Spotify's token endpoint accepts requests from browser JavaScript (CORS enabled)
 - All secrets (tokens) stay in the user's browser
 
-**Token Storage:**
-- POC: `localStorage` (simple, sufficient for hobby project)
-- MVP: `IndexedDB` (slightly more obscure, same security model)
+**Token Storage:** `localStorage`
+
+Both `localStorage` and `IndexedDB` have identical security models - origin-scoped, readable by any JavaScript on the page. Neither protects against malicious browser extensions with site access permissions (this is a fundamental browser limitation, not solvable in client-side code).
+
+Why `localStorage` over `IndexedDB`:
+- Simpler synchronous API (`getItem`/`setItem` vs async transactions)
+- Sufficient capacity (~5MB vs ~50MB) - we store ~500 bytes
+- Easier to debug in DevTools
+- Industry standard for OAuth SPAs (used by Spotify's own PKCE examples)
+
+`IndexedDB` would be appropriate for caching large datasets (playlists, images) for offline use, but that's not in scope.
 
 **Required Scopes:**
 - `user-read-playback-state` - check current playback
@@ -187,6 +197,11 @@ Why no backend:
 
 ### Technical Improvements
 - Migrate to official Spotify TypeScript SDK (`@spotify/web-api-ts-sdk`) - better types, built-in token refresh, maintained by Spotify
+- Validate for KISS / YAGNI
+- Validate codestyle:
+    - TS-specific best practices
+    - comments answer 'why' not 'what'
+    - no magic numbers or other hardcoded values burried in the code
 
 ### Features
 - Edit/delete scenes (long-press on tile)
