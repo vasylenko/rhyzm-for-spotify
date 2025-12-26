@@ -199,15 +199,19 @@ Why `localStorage` over `IndexedDB`:
 - Migrate to official Spotify TypeScript SDK (`@spotify/web-api-ts-sdk`) - better types, built-in token refresh, maintained by Spotify
 - Validate for KISS / YAGNI
 - Sensitive info checkup
+- Unused variabels, functons cleanup
+- README
+- CLAUDE.md update with layout and tech stack, and tooling
 - Validate codestyle:
     - TS-specific best practices
     - comments answer 'why' not 'what'
     - no magic numbers or other hardcoded values burried in the code
 
 ### Features
-- Edit/delete scenes (long-press on tile)
-- Play/pause controls on active scene tile
-- Multiple content types (albums, podcasts, liked songs)
-- "Save recent" scene creation from recently played
-- Logout flow
-- User-friendly error messages with troubleshooting guides
+- P0 - Edit/delete scenes (long-press on tile)
+- P2 - Play/pause controls on active scene tile
+- P1 - Multiple content types (albums, podcasts, liked songs)
+- P1 - "Save recent" scene creation from recently played
+- P3 - Logout flow
+- P0 - User-friendly error messages with troubleshooting guides
+- P2 - Support secure encrypted user preferences storage (Workers KV?) to allow access to the same scenes from different devices
