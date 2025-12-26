@@ -16,6 +16,7 @@ A minimalistic web app to instantly launch favorite Spotify playlists on preferr
 - **Spotify Premium required** - Playback control API only works for Premium subscribers
 - **Development Mode** - New Spotify apps limited to 25 authorized users until Extended Quota Mode is approved
 - **Device ID instability** - Spotify device IDs may change; cached IDs should be treated as hints, not guarantees
+- **Device visibility** - The Web API only returns devices where Spotify is actively running. Sleeping speakers, Google Cast devices, and other Spotify Connect targets won't appear until "woken up" by playing something on them first via the native Spotify app. This is a Spotify API limitation, not something we can work around.
 
 ## Spotify App Configuration
 App registered at [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).

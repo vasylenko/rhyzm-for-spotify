@@ -238,6 +238,10 @@ function saveScene() {
       >
         Refresh devices
       </button>
+
+      <p class="mt-4 text-xs text-spotify-gray text-center">
+        Don't see your device? Open Spotify on it first and play something briefly.
+      </p>
     </div>
 
     <!-- Step 3: Name the Scene -->
