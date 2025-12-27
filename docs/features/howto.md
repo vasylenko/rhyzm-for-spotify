@@ -24,15 +24,18 @@ Start with the user problem. If you can't explain why in 2 sentences, the featur
 ### 2. Diagrams Over Code
 Use ASCII flowcharts and diagrams. Code locks you into implementation details too early.
 
+
+**Good**:
 ```
-Good:
   User taps button
     │
     └─► Show modal
           ├─► Option A → do X
           └─► Option B → do Y
+```
 
-Bad:
+**Bad**:
+```
   function handleClick() {
     showModal({...})
   }
@@ -41,18 +44,20 @@ Bad:
 ### 3. Explain Why
 Every decision needs rationale. Future you will forget why you chose X over Y.
 
+
+**Good:**
 ```
-Good:
 | Decision | Rationale |
 |----------|-----------|
 | Edit button (not long-press) | Simpler - no timers, no touch conflicts |
 
-Bad:
+**Bad:**
+```
 "We'll use an edit button."
 ```
 
 ### 4. KISS
-If something feels complicated, it probably is. Ask: "What's the simplest thing that works?"
+If something feels complicated, it probably is. Think and ask: "What's the simplest thing that works?"
 
 Signs of over-engineering:
 - New abstractions for 2 consumers
@@ -93,18 +98,23 @@ Document findings. Fix the real issues, skip the theoretical ones.
 10. Commit
 ```
 
-## Anti-Patterns
+## Patterns and Anti-Patterns (do's and dont's)
 
-| Don't | Do Instead |
-|-------|------------|
-| Write actual code in feature doc | Write algorithms/flowcharts |
-| Add features "while we're at it" | Stick to the problem stated |
-| Skip the "why" | Every decision needs rationale |
-| Plan for 1000 users when you have 0 | Build for now, document future ideas |
-| Create abstractions for 2 consumers | Keep it inline until 3+ |
-| Ignore existing patterns in codebase | Align with what's already there |
+- DO - Write algorithms/flowcharts instgead of code blocks
+    - DONT - Write actual code in feature doc
 
-## Example Features
+- DONT - Add features "while we're at it"
+    - DO - Stick to the problem stated
 
-- `TODO-support-multiple-browsers.md` - Backend/API feature
-- `TODO-scene-edit.md` - Frontend/UI feature
+- DONT - Skip the "why"
+    - DO - Every decision needs rationale |
+
+- DONT - Plan for 1000 users when you have 0
+    - DO - Build for now, document future ideas |
+
+- DONT - Create abstractions for 2 consumers
+    - DO - Keep it inline until 3+ |
+
+- DONT - Ignore existing patterns in codebase
+    - DO - Align with what's already there 
+
